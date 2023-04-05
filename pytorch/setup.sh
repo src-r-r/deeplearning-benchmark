@@ -1,5 +1,10 @@
 #!/bin/bash
-NAME_NGC=${1:-"pytorch:22.10-py3"}
+NAME_NGC=${NAME_NGC:-pytorch:22.10-py3}
+HERE=${CWD:-$(pwd)}
+
+HERE=$(realpath ${HERE})
+
+cd ${HERE}
 
 echo "---------------------------------------------------"
 echo "Pull Docker Image: "
@@ -11,8 +16,8 @@ echo "---------------------------------------------------"
 echo "Clone Repos: "
 echo "---------------------------------------------------"
 git clone https://github.com/LambdaLabsML/DeepLearningExamples.git && \
-cd DeepLearningExamples && \
+cd ${HERE}/DeepLearningExamples && \
 git checkout lambda/benchmark && \
 cd ..
 git clone https://github.com/lambdal/deeplearning-benchmark.git && \
-cd deeplearning-benchmark/pytorch
+cd ${HERE}/deeplearning-benchmark/pytorch
